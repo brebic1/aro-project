@@ -1,0 +1,1 @@
+in run.ps1 change workgroup name to match rg name in azure
