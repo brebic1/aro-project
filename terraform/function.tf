@@ -4,7 +4,7 @@ resource "azurerm_service_plan" "func" {
     location = azurerm_resource_group.rg.location
 
     os_type = "Windows"
-    sku_name = "Y1"
+    sku_name = "B1"
 
     tags = local.tags
 }
@@ -17,6 +17,8 @@ resource "azurerm_windows_function_app" "functionapp" {
     storage_account_name = azurerm_storage_account.storage.name
     storage_account_access_key = azurerm_storage_account.storage.primary_access_key
     service_plan_id = azurerm_service_plan.func.id
+
+    virtual_network_subnet_id = azurerm_subnet.function_subnet.id
 
     
 

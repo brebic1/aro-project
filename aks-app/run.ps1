@@ -9,7 +9,7 @@ docker build -t kmicabananica.azurecr.io/aks-demo:v1 .
 docker push kmicabananica.azurecr.io/aks-demo:v1
 
 az aks get-credentials `
-  --resource-group rg3-algebra-project `
+  --resource-group rg4-algebra-project `
   --name aro-aks1 `
   --overwrite-existing
 

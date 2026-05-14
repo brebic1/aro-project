@@ -33,4 +33,5 @@ resource "azurerm_key_vault_certificate" "kv_cert" {
 
     }
 }
+    tags = local.tags
 }

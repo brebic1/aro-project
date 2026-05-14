@@ -79,7 +79,7 @@ resource "azurerm_application_gateway" "appgw" {
 
         path_rule {
             name = "func-path-rule"
-            paths = ["/func/*", "/func"]
+            paths = ["/functionap/*", "/functionap"]
             backend_address_pool_name = "func-backend-pool"
             backend_http_settings_name = "func-http-settings"
             rewrite_rule_set_name = "rewrite-set"
@@ -117,7 +117,7 @@ resource "azurerm_application_gateway" "appgw" {
 
             condition {
                 variable    = "var_uri_path"
-                pattern     = "^/func/?$" 
+                pattern     = "^/functionap/?$" 
                 ignore_case = true
             }
 

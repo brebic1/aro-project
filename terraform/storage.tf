@@ -6,10 +6,21 @@ resource "azurerm_storage_account" "storage" {
     account_replication_type = "LRS"
     
     network_rules {
-        default_action = "Allow"
-        bypass = ["AzureServices", "Logging", "Metrics"]
-        ip_rules = ["193.198.186.130"]
+        default_action = "Deny"
+        bypass = [
+            "AzureServices", 
+            "Logging", 
+            "Metrics"]
+        virtual_network_subnet_ids = [
+            azurerm_subnet.jump_subnet.id,
+            azurerm_subnet.aks_subnet.id,
+            azurerm_subnet.function_subnet.id
+        ]
+        ip_rules = [
+            "193.198.186.130"
+        ]    
     }
+
 
     public_network_access_enabled = true
 

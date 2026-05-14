@@ -37,7 +37,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
     oms_agent {
         log_analytics_workspace_id = azurerm_log_analytics_workspace.log_workspace.id
         }
-
+    oidc_issuer_enabled = true
 
     
 

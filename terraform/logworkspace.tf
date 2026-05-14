@@ -4,6 +4,8 @@ resource "azurerm_log_analytics_workspace" "log_workspace" {
     resource_group_name = azurerm_resource_group.rg.name
     sku = "PerGB2018"
     retention_in_days = 30
+
+    tags = local.tags
 }
 resource "azurerm_virtual_machine_extension" "win_extension" {
     name = "AzureMonitorWindowsAgent"
@@ -72,6 +74,7 @@ resource "azurerm_monitor_data_collection_rule" "windows_dcr" {
             ]
         }
     }
+    tags = local.tags
 }
 
 resource "azurerm_monitor_data_collection_rule_association" "windows_dcr_association" {
@@ -82,6 +85,7 @@ resource "azurerm_monitor_data_collection_rule_association" "windows_dcr_associa
         azurerm_monitor_data_collection_rule.windows_dcr,
         azurerm_virtual_machine_extension.win_extension
     ]
+
 }
 
 resource "azurerm_monitor_diagnostic_setting" "kv_logs" {
@@ -91,6 +95,7 @@ resource "azurerm_monitor_diagnostic_setting" "kv_logs" {
     enabled_log {
         category = "AuditEvent" 
         }
+    
 }
 
 resource "azurerm_monitor_diagnostic_setting" "storage_logs" {
@@ -104,5 +109,6 @@ resource "azurerm_monitor_diagnostic_setting" "storage_logs" {
         category = "AllMetrics" 
         enabled = true
         }
+    
 }
 
