@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "rg4-algebra-project"
+  name     = "rg5-algebra-project"
   location = "France Central"
 
   tags = local.tags

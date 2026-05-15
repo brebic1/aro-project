@@ -30,6 +30,8 @@ resource "azurerm_windows_function_app" "functionapp" {
     app_settings = {
         "FUNCTIONS_WORKER_RUNTIME" = "powershell"
         website_run_from_package = "1"
-    }    
+    }
+    
+    public_network_access_enabled = false
     tags = local.tags
 }
