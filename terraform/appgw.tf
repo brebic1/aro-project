@@ -59,16 +59,16 @@ resource "azurerm_application_gateway" "appgw" {
         port = 443
         protocol = "Https"
         request_timeout = 30
-        pick_host_name_from_backend_address = true
+        host_name = "aro-windows-function-app.azurewebsites.net"
         probe_name = "func-probe"
     }
     probe {
         name = "func-probe"
         protocol = "Https"
-        host = "aro-windows-function-app.azurewebsites.net"
-        path = "/api/HelloFunc"
+        path = "/"
         interval = 30
-        timeout = 30
+        timeout = 60
+        pick_host_name_from_backend_http_settings = true
         unhealthy_threshold = 3
     }
 

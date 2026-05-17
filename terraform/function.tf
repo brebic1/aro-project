@@ -26,12 +26,27 @@ resource "azurerm_windows_function_app" "functionapp" {
         application_stack {
             powershell_core_version = "7.4"
         }
+                ip_restriction {
+            ip_address = "86.32.214.48/32"
+            action     = "Allow"
+            priority   = 100
+            name       = "allow-my-ip"
+        }
+
+        scm_ip_restriction {
+            ip_address = "86.32.214.48/32"
+            action     = "Allow"
+            priority   = 100
+            name       = "allow-my-ip-scm"
+        }
+        ip_restriction_default_action     = "Deny"
+        scm_ip_restriction_default_action = "Deny"
     }
+    
     app_settings = {
         "FUNCTIONS_WORKER_RUNTIME" = "powershell"
         website_run_from_package = "1"
     }
     
-    public_network_access_enabled = false
     tags = local.tags
 }

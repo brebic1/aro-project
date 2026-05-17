@@ -17,12 +17,10 @@ resource "azurerm_storage_account" "storage" {
             azurerm_subnet.function_subnet.id
         ]
         ip_rules = [
-            "193.198.186.130"
+            "193.198.186.130",
+            "86.32.214.48"
         ]    
     }
-
-
-    public_network_access_enabled = true
 
     tags = local.tags
 }
